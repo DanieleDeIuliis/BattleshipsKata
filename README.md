@@ -1,0 +1,1 @@
+Credits and rules: https://katalyst.codurance.com/battleships
