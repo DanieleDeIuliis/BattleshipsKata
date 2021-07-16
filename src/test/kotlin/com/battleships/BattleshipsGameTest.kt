@@ -27,4 +27,16 @@ class BattleshipsGameTest {
 
         verify { parser.parse("add Paperino") }
     }
+
+    @Test
+    fun `execute command`() {
+        val mockCommand = mockk<Command>(relaxed = true)
+
+        every { ioStream.readInput() } returns "add Paperino"
+        every { parser.parse("add Paperino") } returns mockCommand
+
+        game.start()
+
+        verify { mockCommand.execute() }
+    }
 }
