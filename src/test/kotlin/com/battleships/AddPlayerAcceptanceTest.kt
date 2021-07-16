@@ -6,7 +6,6 @@ import io.mockk.verify
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
-@Disabled
 class AddPlayerAcceptanceTest {
 
     private val ioStream: IOStream = mockk(relaxed = true)
