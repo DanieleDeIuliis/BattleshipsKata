@@ -5,7 +5,8 @@ class BattleshipsGameApp(private val ioStream: IOStream, private val parser: Par
         val input = ioStream.readInput()
         val command = parser.parse(input)
         command.execute()
-        battleshipGame.status
+        val status = battleshipGame.status
+        ioStream.writeOutput(status)
     }
 
 }

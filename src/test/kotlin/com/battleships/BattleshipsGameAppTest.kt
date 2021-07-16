@@ -52,4 +52,17 @@ class BattleshipsGameAppTest {
 
         verify { battleshipGame.status }
     }
+
+    @Test
+    fun `write status`() {
+        val mockCommand = mockk<Command>(relaxed = true)
+
+        every { ioStream.readInput() } returns "add Paperino"
+        every { parser.parse("add Paperino") } returns mockCommand
+        every { battleshipGame.status } returns "Player Paperino added!"
+
+        game.start()
+
+        verify { ioStream.writeOutput("Player Paperino added!") }
+    }
 }
