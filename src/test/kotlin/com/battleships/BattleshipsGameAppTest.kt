@@ -5,11 +5,12 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Test
 
-class BattleshipsGameTest {
+class BattleshipsGameAppTest {
 
+    private val battleshipGame = mockk<BattleshipsGame>(relaxed = true)
     private val ioStream: IOStream = mockk(relaxed = true)
     private val parser: Parser = mockk(relaxed = true)
-    private val game = BattleshipsGame(ioStream, parser)
+    private val game = BattleshipsGameApp(ioStream, parser, battleshipGame)
 
 
     @Test
@@ -38,5 +39,17 @@ class BattleshipsGameTest {
         game.start()
 
         verify { mockCommand.execute() }
+    }
+
+    @Test
+    fun `ask for status after command execution`() {
+        val mockCommand = mockk<Command>(relaxed = true)
+
+        every { ioStream.readInput() } returns "add Paperino"
+        every { parser.parse("add Paperino") } returns mockCommand
+
+        game.start()
+
+        verify { battleshipGame.status }
     }
 }

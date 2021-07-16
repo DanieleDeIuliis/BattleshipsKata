@@ -15,7 +15,7 @@ class AddPlayerAcceptanceTest {
     fun `happy path`() {
         every { ioStream.readInput() } returns "add Pippo"
 
-        val consoleApp = BattleshipsGame(ioStream, mockk())
+        val consoleApp = BattleshipsGameApp(ioStream, mockk(), mockk())
         consoleApp.start()
 
         verify { ioStream.writeOutput("Player Pippo added!") }
