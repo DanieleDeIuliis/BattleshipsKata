@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm") version "1.5.21"
 }
 
-group = "me.diu"
+group = "com.battleships"
 version = "1.0-SNAPSHOT"
 
 repositories {
